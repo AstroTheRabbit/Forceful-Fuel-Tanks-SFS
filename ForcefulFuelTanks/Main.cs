@@ -1,13 +1,14 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UITools;
+using HarmonyLib;
 using ModLoader;
 using SFS.IO;
 using SFS.Parts;
 using SFS.Parts.Modules;
-using System.Linq;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
-using System;
 
 namespace ForcefulFuelTanks
 {
@@ -20,6 +21,9 @@ namespace ForcefulFuelTanks
         public override string MinimumGameVersionNecessary => "1.5.10.2";
         public override string ModVersion => "v1.0";
         public override string Description => "Applies an explosive force on parts in the radius of destroyed fuel tanks.";
+
+        public override Dictionary<string, string> Dependencies { get; } = new Dictionary<string, string> { { "UITools", "1.1.1" } };
+        public Dictionary<string, FilePath> UpdatableFiles => new Dictionary<string, FilePath>() { { "https://github.com/pixelgaming579/Forceful-Fuel-Tanks-SFS/releases/latest/download/ForcefulFuelTanks.dll", new FolderPath(ModFolder).ExtendToFile("ForcefulFuelTanks.dll") } };
 
         public override void Early_Load()
         {
